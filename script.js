@@ -716,63 +716,85 @@ function clearAllData() {
     showToast('All data cleared.', 'danger');
 }
 
-// Download / Print
+// ============================
+// Download CV sebagai PDF (versi robust untuk HP)
+// ============================
 function downloadCV() {
     const paper = document.getElementById('cvPaper');
-    const name = (state.personal.fullName || 'CV').trim().replace(/\s+/g, '_');
-    const fileName = `${name}_CVora.pdf`;
+    
+    // Cek library
+    if (typeof html2pdf === 'undefined') {
+        showToast('Library PDF belum siap. Refresh halaman.', 'danger');
+        return;
+    }
 
-    const originalTransform = paper.style.transform;
-    const originalWidth = paper.style.width;
-    const originalMinHeight = paper.style.minHeight;
-    const originalBoxShadow = paper.style.boxShadow;
-    const originalBorderRadius = paper.style.borderRadius;
+    showToast('📄 Membuat PDF... tunggu sebentar', 'default');
 
-    paper.style.transform = 'none';
-    paper.style.width = '210mm';
-    paper.style.minHeight = '297mm';
-    paper.style.boxShadow = 'none';
-    paper.style.borderRadius = '0';
+    // Nama file
+    const rawName = state.personal.fullName || 'MyCV';
+    const safeName = rawName.trim()
+        .replace(/[^a-zA-Z0-9\s]/g, '')
+        .replace(/\s+/g, '_')
+        .substring(0, 30);
+    const fileName = `${safeName}_CV.pdf`;
+
+    // CLONE elemen CV ke container tersembunyi (tanpa scale/transform)
+    const clone = paper.cloneNode(true);
+    clone.style.cssText = `
+        position: fixed;
+        left: -9999px;
+        top: 0;
+        width: 794px;
+        min-height: 1123px;
+        background: white;
+        transform: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        z-index: -1;
+    `;
+    document.body.appendChild(clone);
 
     const opt = {
-        margin:       0,
-        filename:     fileName,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { 
+        margin: 0,
+        filename: fileName,
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: {
             scale: 2,
             useCORS: true,
-            letterRendering: true,
-            backgroundColor: '#ffffff'
+            allowTaint: true,
+            backgroundColor: '#ffffff',
+            logging: false,
+            windowWidth: 794,
+            windowHeight: 1123
         },
-        jsPDF:        { 
-            unit: 'mm', 
-            format: 'a4', 
-            orientation: 'portrait' 
-        },
-        pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+        jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'portrait'
+        }
     };
 
-    showToast('Generating PDF...', 'default');
+    // Tambahkan timeout untuk deteksi kalau stuck
+    const timeout = setTimeout(() => {
+        document.body.removeChild(clone);
+        showToast('⚠️ Proses terlalu lama. Coba lagi.', 'danger');
+    }, 30000); // 30 detik timeout
 
     html2pdf().set(opt)
-        .from(paper)
+        .from(clone)
         .save()
         .then(() => {
-            paper.style.transform = originalTransform;
-            paper.style.width = originalWidth;
-            paper.style.minHeight = originalMinHeight;
-            paper.style.boxShadow = originalBoxShadow;
-            paper.style.borderRadius = originalBorderRadius;
-            showToast('PDF downloaded successfully!', 'success');
+            clearTimeout(timeout);
+            document.body.removeChild(clone);
+            showToast('✅ PDF tersimpan di Downloads!', 'success');
         })
         .catch((err) => {
-            console.error('Gagal membuat PDF:', err);
-            paper.style.transform = originalTransform;
-            paper.style.width = originalWidth;
-            paper.style.minHeight = originalMinHeight;
-            paper.style.boxShadow = originalBoxShadow;
-            paper.style.borderRadius = originalBorderRadius;
-            showToast('Failed to generate PDF.', 'danger');
+            clearTimeout(timeout);
+            document.body.removeChild(clone);
+            console.error('PDF Error:', err);
+            showToast('❌ Gagal buat PDF. Coba pakai Print.', 'danger');
         });
 }
 // Sidebar navigation (smooth scroll ke section)
