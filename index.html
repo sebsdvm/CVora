@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVora — Modern CV Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========================= -->
+    <!-- SIDEBAR KIRI              -->
+    <!-- ========================= -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-mark">C</div>
+                <span class="logo-text">CVora</span>
+            </div>
+            <button class="icon-btn mobile-close" id="closeSidebar" aria-label="Close menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <button class="nav-btn" data-section="new">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                <span>New CV</span>
+            </button>
+            <button class="nav-btn active" data-section="personal">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>Personal Info</span>
+            </button>
+            <button class="nav-btn" data-section="education">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                <span>Education</span>
+            </button>
+            <button class="nav-btn" data-section="experience">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                <span>Experience</span>
+            </button>
+            <button class="nav-btn" data-section="skills">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span>Skills</span>
+            </button>
+            <button class="nav-btn" data-section="certificates">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>
+                <span>Certificates</span>
+            </button>
+            <button class="nav-btn" data-section="templates">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                <span>Templates</span>
+            </button>
+            <button class="nav-btn" data-section="settings">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span>Settings</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="save-status" id="saveStatus">
+                <span class="save-dot"></span>
+                <span>Auto-saved</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ========================= -->
+    <!-- MAIN AREA                 -->
+    <!-- ========================= -->
+    <main class="main">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+            <button class="icon-btn mobile-menu" id="openSidebar" aria-label="Open menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <div class="topbar-title">
+                <h1>CVora</h1>
+                <p>Build a professional CV in minutes.</p>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-ghost" id="clearBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+                    Clear
+                </button>
+                <button class="btn btn-primary" id="downloadBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download / Print
+                </button>
+            </div>
+        </header>
+
+        <!-- Content: Form + Preview -->
+        <section class="workspace">
+
+            <!-- KOLOM KIRI: FORM -->
+            <div class="form-panel">
+
+                <!-- Personal Info -->
+                <div class="card section-card" id="section-personal">
+                    <div class="card-header">
+                        <h2>Personal Information</h2>
+                        <span class="section-tag">01</span>
+                    </div>
+
+                    <div class="photo-upload">
+                        <div class="photo-preview" id="photoPreview">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <div class="photo-actions">
+                            <label class="btn btn-outline" for="photoInput">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                Upload Photo
+                            </label>
+                            <input type="file" id="photoInput" accept="image/jpeg,image/png,image/jpg" hidden>
+                            <button class="btn btn-ghost btn-sm" id="removePhoto">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="e.g. Andi Pratama">
+                        </div>
+                        <div class="form-group">
+                            <label for="jobTitle">Professional Title</label>
+                            <input type="text" id="jobTitle" placeholder="e.g. Frontend Developer">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="name@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="+62 812 3456 7890">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" placeholder="Jakarta, Indonesia">
+                        </div>
+                        <div class="form-group">
+                            <label for="website">Website / LinkedIn</label>
+                            <input type="text" id="website" placeholder="linkedin.com/in/username">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="about">Short Profile / About Me</label>
+                            <textarea id="about" rows="4" placeholder="Tell recruiters about yourself in 2–3 sentences..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="card section-card" id="section-education">
+                    <div class="card-header">
+                        <h2>Education</h2>
+                        <span class="section-tag">02</span>
+                    </div>
+                    <div class="list-container" id="educationList"></div>
+                    <button class="btn btn-outline add-btn" data-add="education">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                        Add Education
+                    </button>
+                </div>
+
+                <!-- Experience -->
+                <div class="card section-card" id="section-experience">
+                    <div class="card-header">
+                        <h2>Experience</h2>
+                        <span class="section-tag">03</span>
+                    </div>
+                    <div class="list-container" id="experienceList"></div>
+                    <button class="btn btn-outline add-btn" data-add="experience">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                        Add Experience
+                    </button>
+                </div>
+
+                <!-- Skills -->
+                <div class="card section-card" id="section-skills">
+                    <div class="card-header">
+                        <h2>Skills</h2>
+                        <span class="section-tag">04</span>
+                    </div>
+                    <div class="skills-input-row">
+                        <input type="text" id="skillInput" placeholder="Type a skill and press Enter (e.g. JavaScript)">
+                        <button class="btn btn-primary btn-sm" id="addSkillBtn">Add</button>
+                    </div>
+                    <div class="skills-tags" id="skillsList"></div>
+                </div>
+
+                <!-- Certificates -->
+                <div class="card section-card" id="section-certificates">
+                    <div class="card-header">
+                        <h2>Certificates</h2>
+                        <span class="section-tag">05</span>
+                    </div>
+                    <div class="list-container" id="certificateList"></div>
+                    <button class="btn btn-outline add-btn" data-add="certificate">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                        Add Certificate
+                    </button>
+                </div>
+
+                <!-- Templates -->
+                <div class="card section-card" id="section-templates">
+                    <div class="card-header">
+                        <h2>Templates</h2>
+                        <span class="section-tag">06</span>
+                    </div>
+                    <div class="template-grid">
+                        <button class="template-card active" data-template="modern">
+                            <div class="template-preview modern-preview"></div>
+                            <span>Modern</span>
+                        </button>
+                        <button class="template-card" data-template="professional">
+                            <div class="template-preview professional-preview"></div>
+                            <span>Professional</span>
+                        </button>
+                        <button class="template-card" data-template="minimal">
+                            <div class="template-preview minimal-preview"></div>
+                            <span>Minimal</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div class="card section-card" id="section-settings">
+                    <div class="card-header">
+                        <h2>Settings</h2>
+                        <span class="section-tag">07</span>
+                    </div>
+                    <div class="setting-row">
+                        <div>
+                            <strong>Accent Color</strong>
+                            <p>Pick the main color of your CV.</p>
+                        </div>
+                        <div class="color-picker">
+                            <button class="color-dot" data-color="#4f46e5" style="background:#4f46e5"></button>
+                            <button class="color-dot" data-color="#0ea5e9" style="background:#0ea5e9"></button>
+                            <button class="color-dot" data-color="#10b981" style="background:#10b981"></button>
+                            <button class="color-dot" data-color="#f59e0b" style="background:#f59e0b"></button>
+                            <button class="color-dot" data-color="#ef4444" style="background:#ef4444"></button>
+                            <button class="color-dot" data-color="#1f2937" style="background:#1f2937"></button>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <div>
+                            <strong>Clear all data</strong>
+                            <p>Remove everything and start fresh.</p>
+                        </div>
+                        <button class="btn btn-danger" id="clearBtn2">Clear All</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- KOLOM KANAN: LIVE PREVIEW -->
+            <div class="preview-panel">
+                <div class="preview-toolbar">
+                    <span class="preview-label">Live Preview</span>
+                    <span class="preview-badge" id="templateBadge">Modern</span>
+                </div>
+                <div class="preview-wrapper">
+                    <div class="cv-paper" id="cvPaper">
+                        <!-- CV content akan dirender oleh JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
